@@ -33,7 +33,7 @@ val cookies = listOf(
         price = 1.49
     ),
     Cookie(
-        name = "Snickerdoodle",
+        name = "Snicker doodle",
         softBaked = true,
         hasFilling = false,
         price = 1.39
@@ -53,5 +53,37 @@ val cookies = listOf(
 )
 
 fun main() {
+//    cookies.forEach{
+//        println("Menu item: ${it.name}")
+//
+//    }
+
+    val fullMenu = cookies.map {
+        "${it.name} - $${it.price}"
+    }
+    println("Full Menu")
+    fullMenu.forEach{
+        println(it)
+    }
+//    val softBakedMenu = cookies.filter {
+//        it.softBaked
+//    }
+//    println("Soft Cookies")
+//    softBakedMenu.forEach{
+//        println("${it.name} - $${it.price}")
+//    }
+    val groupedMenu = cookies.groupBy {
+        it.softBaked
+    }
+    val softBakedMenu = groupedMenu[true] ?: listOf()
+    val crunchyMenu = groupedMenu[false] ?: listOf()
+    println("Soft cookies:")
+    softBakedMenu.forEach {
+        println("${it.name} - $${it.price}")
+    }
+    println("Crunchy cookies:")
+    crunchyMenu.forEach {
+        println("${it.name} - $${it.price}")
+    }
 
 }
